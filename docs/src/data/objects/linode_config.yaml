@@ -18,11 +18,6 @@ schema:
   created:
     _type: Datetime
     _value: 2015-09-29T11:21:38
-  devtmpfs_automount:
-    _editable: true
-    _type: Boolean
-    _value: false
-    _description: Populates the /dev directory early during boot without udev.
   disks:
     _type: object
     _description: Disks attached to this Linode config.
@@ -83,27 +78,32 @@ schema:
   helpers:
     _type: Object
     _description: Helpers enabled when booting to this Linode config.
-    disable_updatedb:
+    updatedb_disabled:
       _editable: true
       _type: Boolean
       _value: true
       _description: Disables updatedb cron job to avoid disk thrashing.
-    enable_distro_helper:
+    distro:
       _editable: true
       _type: Boolean
       _value: true
       _description: Helps maintain correct inittab/upstart console device.
-    enable_modules_dep_helper:
+    modules_dep:
       _editable: true
       _type: Boolean
       _value: true
       _description: Creates a modules dependency file for the kernel you run.
-    enable_network_helper:
+    network:
       _editable: true
       _type: Boolean
       _value: true
       _description: >
         Automatically configure static networking.
+    devtmpfs_automount:
+      _editable: true
+      _type: Boolean
+      _value: false
+      _description: Populates the /dev directory early during boot without udev.
   initrd:
     _editable: true
     _type: Integer
@@ -128,7 +128,7 @@ schema:
     _description: Human-friendly label for this config.
     _filterable: true
     _limit: 1-48 characters
-  ram_limit:
+  memory_limit:
     _editable: true
     _type: Integer
     _value: 512
